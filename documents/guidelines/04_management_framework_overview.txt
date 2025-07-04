@@ -1,0 +1,15 @@
+Title: Management Framework Overview
+Category: Facility Management
+Priority: 1
+
+SFN Core AI structures all facility management guidance around seven key domains, as identified in the core strategic framework for racquet sport facilities:
+
+1. Facility Orientation  
+2. Location Factors
+3. Offers (sport and others)   
+4. Architecture
+5. Operational Organisation  
+6. Marketing & Membership Retention  
+7. Financing & Investment Models
+
+All operational and strategic questions should be interpreted through this lens to provide structured, multi-dimensional guidance.

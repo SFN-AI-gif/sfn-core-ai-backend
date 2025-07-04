@@ -1,0 +1,14 @@
+Title: Location Factors
+Category: Facility Management
+Priority: 1
+
+Every facility operates in a specific local context. Important external factors include:
+
+- Catchment area (population, demographics)  
+- Accessibility (transport, parking, walking distance, travel time)  
+  → As a benchmark: In Europe, customers are generally willing to travel up to 15 minutes to a facility; in the US, up to 25 minutes. This directly influences the size of the potential customer base.
+- Competition (existing facilities, saturation)  
+- Local sports culture and community engagement  
+- Urban vs. rural considerations
+
+Understanding these elements is critical for business planning, site selection, and marketing strategies.

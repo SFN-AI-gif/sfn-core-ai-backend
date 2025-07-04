@@ -1,0 +1,27 @@
+Title: Offer Design
+Category: Facility Management
+Priority: 1
+
+This area focuses on what services and programs a facility provides. It includes:
+
+- Types of sports (squash, padel, pickleball, badminton)  
+- Court types and related amenities  
+- Coaching, events, tournaments  
+- Targeted services (youth, seniors, competitive players)  
+- Non-sport offerings (food, coworking, childcare)
+
+Facility layout and proportion are critical:  
+The ratio between total facility size and the number of courts has a direct impact on construction and operating costs. Benchmarks suggest:
+
+- For squash: ~150 m² per court  
+- For padel: ~300 m² per court  
+- For pickleball and badminton: ~200 m² per court  
+
+> Example: A 6-court squash facility should not exceed ~900 m². Going significantly above this reduces cost-efficiency.
+
+Architectural factors also play a role in the customer experience:
+
+- **Traffic flow**: Facilities should be designed to increase customer dwell time, as longer stays typically lead to higher secondary revenue (F&B, pro shop, etc.)  
+- **Architectural alignment**: The concept must be reflected in the layout. For example, if the facility aims to function as a “Social Club”, larger locker rooms and common areas are essential .
+
+A well-balanced, concept-aligned offering increases both usability and profitability.

@@ -1,0 +1,34 @@
+ID,Typ (Wix-Komponente),Empfohlene Einstellungen,Beschreibung
+boxSidebar,Box/Container,Sichtbar, linksbündig, Hintergrund hell,Sidebar-Container für Navigation & Listen
+txtConversationsHeader,Text,Überschrift, fett,Titel für Konversationsliste
+repConversations,Repeater,Datenbindung: Konversationsdaten,Listet vergangene Chats
+txtConversationTitle,Text,Im Repeater, Datenfeld: Titel,Titel einer Konversation
+txtConversationPreview,Text,Im Repeater, Datenfeld: Vorschau,Vorschau der letzten Nachricht
+iconConversationDelete,Icon/Button,Klickbar, Aktion: Löschen,Löscht Konversation
+txtDocumentsHeader,Text,Überschrift, fett,Titel für Dokumentenliste
+repDocuments,Repeater,Datenbindung: Dokumentendaten,Listet hochgeladene Dokumente
+txtDocumentName,Text,Im Repeater, Datenfeld: Dateiname,Name des Dokuments
+txtDocumentDate,Text,Im Repeater, Datenfeld: Datum,Upload-Datum
+iconDocumentType,Icon,Im Repeater, nach Dateityp,Symbol für Dateityp
+txtDocumentStatus,Text,Im Repeater, Statusanzeige,Status (z.B. verarbeitet)
+iconDocumentDownload,Icon/Button,Klickbar, Aktion: Download,Download des Dokuments
+iconDocumentDelete,Icon/Button,Klickbar, Aktion: Löschen,Löscht Dokument
+btnExportChat,Button,Klickbar, Aktion: Export,Exportiert aktuellen Chat
+dropdownExportFormat,Dropdown (optional),Auswahl: PDF, CSV, DOCX,Exportformat wählen
+newConversationBtn,Button,Klickbar, Aktion: Neue Konversation,Startet neuen Chat
+faqLink,Text/Link,Klickbar, öffnet FAQ,Hilfe/FAQ
+settingsBtn,Button,Klickbar, öffnet Einstellungen,Einstellungen
+chatHistoryBox,Box/Container,Hauptbereich für Chatverlauf,Enthält Chatverlauf
+chatHistoryRepeater,Repeater,Datenbindung: Chatverlauf,Zeigt alle Chatnachrichten
+userMessage,Text,Im Repeater, Datenfeld: User-Nachricht,Nachricht des Nutzers
+aiMessage,Text,Im Repeater, Datenfeld: AI-Antwort,Antwort der KI
+messageTimestamp,Text,Im Repeater, Datenfeld: Zeitstempel,Zeit der Nachricht
+errorMessage,Text,Sichtbar bei Fehlern,Fehleranzeige
+inputSection,Box/Container,Unten im Chatbereich,Enthält Eingabefelder und Buttons
+chatInput,Text Input,Platzhalter: "Type your message…",Eingabefeld für Chat
+sendBtn,Button,Klickbar, Aktion: Senden,Sendet Chatnachricht
+fileUploadBtn,Button/File Upload,Klickbar, Aktion: Datei auswählen/hochladen,Datei-Upload
+voiceInputBtn,Button/Mikrofon,Klickbar, Aktion: Spracheingabe (optional),Spracheingabe
+aiStatus,Text,Zeigt AI-Status (z.B. "AI is typing…"),Statusanzeige
+loadingIndicator,Loader/Spinner,Sichtbar bei Verarbeitung,Ladeanzeige
+notificationToast,Toast/Popup,Zeigt Systembenachrichtigungen,Benachrichtigungen (Erfolg, Fehler, etc.) 

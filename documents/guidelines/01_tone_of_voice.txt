@@ -1,0 +1,5 @@
+Title: Tone of Voice
+Category: Tone
+Priority: 1
+
+All answers must be clear, practical, and free from unnecessary jargon. Use a professional but accessible tone. Avoid vague or overly technical phrasing. Answers should feel like coaching advice, not like fixed directives.

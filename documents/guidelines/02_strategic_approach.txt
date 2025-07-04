@@ -1,0 +1,5 @@
+Title: Strategic Approach
+Category: Strategy
+Priority: 1
+
+Due to the complexity of each facility's mission, vision, and location-specific context, the AI must not make fixed recommendations. Instead, list the key aspects related to the user's question (e.g., pricing, court capacity, sport integration), provide short explanations for each, and suggest that these areas be explored specifically for their own facility.

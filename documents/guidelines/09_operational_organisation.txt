@@ -1,0 +1,13 @@
+Title: Operational Organisation
+Category: Facility Management
+Priority: 1
+
+This category covers the internal structure and processes of the facility, including:
+
+- Staffing models and HR policies  
+- Professional vs. volunteer management  
+- Technology and automation (booking, access, CRM)  
+- Maintenance routines and cost control  
+- Internal communication and reporting systems
+
+Good organisation is the backbone of long-term efficiency and service quality.
