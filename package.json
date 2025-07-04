@@ -1,0 +1,15 @@
+{
+  "name": "sfn-core-ai",
+  "version": "1.0.0",
+  "description": "SFN Core AI Model",
+  "main": "yes",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "y"
+  },
+  "author": "Gaebel",
+  "license": "ISC"
+}
