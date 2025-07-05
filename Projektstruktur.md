@@ -95,7 +95,7 @@ WIX_CLIENT_ID=...     # (optional, für spätere Authentifizierung)
 
 ## 4. UI Component Reference (with IDs)
 
-### Sidebar Components (Minimal Icon Bar)
+#### Sidebar Components (Minimal Icon Bar)
 - **Sidebar Container**
   - ID: `boxSidebar`
   - Purpose: Holds all sidebar elements, left-aligned, minimal width, light background
@@ -115,22 +115,75 @@ WIX_CLIENT_ID=...     # (optional, für spätere Authentifizierung)
   - ID: `faqLink`
   - Purpose: Opens help/FAQ section
 
-### Main Content Area (Dynamic, Perplexity-like)
+#### Main Content Area (Dynamic, Perplexity-like)
 - **Logo/Header**
   - ID: `coreAILogo`
   - Purpose: Branding, always visible at the top
 - **Home/Chat Box**
   - ID: `homeBox`
   - Purpose: Main chat interface, default visible on page load
+    - **Chat Input Section (nur in homeBox, IDs mit Präfix 'Home')**
+      - ID: `HomeChatInputBox`
+      - Purpose: Input field and send button for new messages in homeBox
+        - **Chat Input Field:** `HomeChatInput`
+        - **Send Button:** `HomeChatSendBtn`
+        - **File Upload Button:** `HomeFileUploadBtn`
+        - **Voice Input Button:** `HomeVoiceInputBtn`
+        - **Settings Button (Input/Chat-specific):** `HomeChatSettingsBtn`
 - **Documents Box**
   - ID: `documentsBox`
   - Purpose: Document management and upload area
-- **Chat Box (optional, if separated)**
+- **Chat Box**
   - ID: `chatBox`
-  - Purpose: Dedicated chat area (if not using homeBox for chat)
+  - Purpose: Dedicated chat area with chat session overview and chat history
+    - **Chat Session List (Chat-Übersicht)**
+      - **Chat List Repeater**
+        - ID: `chatListRepeater`
+        - Purpose: Lists all chat sessions of the user (e.g. sorted by date)
+          - **Chat Title:** `txtChatTitle`
+          - **Last Message Snippet:** `txtLastMessage`
+          - **Last Message Timestamp:** `txtLastMessageTimestamp`
+          - **Chat Select Button/Area:** (entire repeater item clickable)
+    - **Chat History (of selected session)**
+      - **Chat History Repeater**
+        - ID: `chatHistoryRepeater`
+        - Purpose: Shows all messages of the currently selected chat session
+          - **User Message:** `userMessage`
+          - **AI Message:** `aiMessage`
+          - **Message Timestamp:** `messageTimestamp`
+    - **Chat Input Section (nur in chatBox, IDs wie ursprünglich)**
+      - ID: `chatInputBox`
+      - Purpose: Input field and send button for new messages in chatBox
+        - **Chat Input Field:** `chatInput`
+        - **Send Button:** `chatSendBtn`
+        - **File Upload Button:** `fileUploadBtn`
+        - **Voice Input Button:** `voiceInputBtn`
+        - **Settings Button (Input/Chat-specific):** `chatSettingsBtn`
 - **Settings Box**
   - ID: `settingsBox`
   - Purpose: Settings and preferences area
+    - **Settings Repeater**
+      - ID: `settingsRepeater`
+      - Purpose: Lists all available settings
+        - **Setting Name:** `txtSettingName`
+        - **Setting Value:** `txtSettingValue`
+        - **Save Button:** `btnSaveSetting`
+    - **Global Settings Modal**
+      - ID: `globalSettingsModal`
+      - Purpose: Modal for global application settings
+        - **Close Button:** `btnCloseGlobalSettings`
+        - **Save Button:** `btnSaveGlobalSettings`
+- **FAQ Box**
+  - ID: `faqBox`
+  - Purpose: Frequently asked questions and answers
+    - **FAQ Repeater**
+      - ID: `faqRepeater`
+      - Purpose: Lists all FAQ entries
+        - **Question:** `txtFaqQuestion`
+        - **Answer:** `txtFaqAnswer`
+        - **Toggle Button (optional):** `btnFaqToggle`
+    - **Search Input (optional):** `faqSearchInput`
+    - **Category Dropdown (optional):** `faqCategoryDropdown`
 
 ### Chat Area Components (Inside homeBox or chatBox)
 - **Chat History Repeater**
@@ -171,7 +224,8 @@ WIX_CLIENT_ID=...     # (optional, für spätere Authentifizierung)
   - Purpose: Shows when AI is generating a response
 - **Notification Toast**
   - ID: `notificationToast`
-  - Purpose: Shows system notifications (success, warning, error)
+  - Purpose: Shows system notifications (success, warning, error, info)
+  - Usage: Use the function `showNotification(message, type)` in the frontend script to display toast notifications for user feedback (e.g. after document upload, settings change, errors, etc.).
 
 ## 5. Design & Navigation Principles (Updated)
 - **Minimal Sidebar:** Only essential navigation icons, docked left (desktop) or bottom (mobile). No text labels, only tooltips/aria-labels for accessibility.
@@ -302,7 +356,7 @@ POST   /api/upload         # Neues Dokument hochladen
 
 ### Backend-Deployment & API-URL
 - Das Backend läuft auf einem eigenen IONOS-Server (z.B. http://217.154.114.229:3000)
-- Die Firewall muss Port 3000 für eingehende Verbindungen freigeben, damit die API von außen (z.B. Wix) erreichbar ist
+- Die Domain https://api.squashfacilities.com ist angelegt und zeigt auf den Server (Port 3000 bzw. später 443 für HTTPS)
 - Die Backend-URL wird im Frontend für alle API-Calls verwendet (nicht die Wix-URL)
 
 ### Upload-Logik & Chunking
@@ -322,12 +376,51 @@ POST   /api/upload         # Neues Dokument hochladen
 - Das Frontend kommuniziert per HTTP-API mit dem Backend (z.B. http://217.154.114.229:3000/api/chat)
 - CORS ist im Backend aktiviert
 - Für den Produktivbetrieb wird empfohlen, das Backend später auch über HTTPS (Port 443) erreichbar zu machen
+- **Der JavaScript-Code für die Dokumentenverwaltung (z.B. aus frontendCoreAi.js) wird als öffentliche Datei im Bereich "Öffentlich (Frontend)" von Wix Velo gepflegt. Im Seiten-Code werden nur noch Initialisierung, Event-Handler und UI-Bindung implementiert. Die wiederverwendbare Logik (API-Calls, Utilitys) liegt in frontendCoreAi.js und wird importiert.**
+- **Die Backend-Dokumentenlogik ist in einer eigenen Datei (backend/documentService.js) gekapselt. Diese enthält alle Funktionen zur Kommunikation mit Weaviate und zur Aufbereitung der Dokumentenliste. Im server.js werden diese Funktionen importiert und in den API-Endpunkten verwendet.**
 
-### Nächster Schritt
-- Test der API im Browser/Frontend (z.B. mit Postman, curl oder direkt aus Wix)
+### Server-Dateistruktur (Backend)
+
+Aktuelle Ordnerstruktur auf dem Linux-Server (Stand: 05.07.2025):
+
+- `/backend/` – Enthält Backend-Service- und Hilfsdateien wie documentService.js
+- `/documents/` – Enthält zentrale Wissensdokumente, Marktstudien, Richtlinien etc., die nach Weaviate hochgeladen werden
+- `/uploads/` – Enthält alle von Nutzern hochgeladenen Dateien (z.B. Businesspläne, Analysen), die über die Weboberfläche eingereicht wurden
+- `.gitignore` – Git-Konfiguration für auszuschließende Dateien
+- `Projektstruktur.md` – Zentrale technische Dokumentation (diese Datei)
+- `SFN_Core_AI_UI_Components.xlsx` – Übersicht der UI-Komponenten
+- `frontend_core-ai.js` – Frontend-Logik (Wix/JS)
+- `package.json` / `package-lock.json` – Node.js-Abhängigkeiten und Projektkonfiguration
+- `server.js` – Haupt-Backend-Server (Express)
+
+**Beispiel-Inhalte:**
+- `documents/` enthält z.B. Marktstudien, Richtlinien, Reports im PDF-, DOCX- oder XLSX-Format
+- `uploads/` enthält Nutzer-Uploads, die nach dem Upload ggf. nach Weaviate verarbeitet werden
+
+Die .env-Datei mit allen Secrets liegt im Hauptprojektverzeichnis und ist nicht im Repository enthalten.
+
+## 15. Dateiübertragung & Deployment-Standard
+
+**Standard-Vorgehen für das Übertragen und Aktivieren von Backend-Dateiänderungen:**
+
+1. Nach jeder lokalen Änderung (z.B. an server.js) die Datei per scp auf den Server übertragen:
+   ```bash
+   scp server.js root@217.154.114.229:/opt/sfn-core-ai-backend/server.js
+   ```
+   (Pfad und Dateiname ggf. anpassen)
+2. Anschließend auf dem Server per SSH einloggen und das Backend neu starten:
+   ```bash
+   pm2 restart sfn-core-ai
+   ```
+3. Erst nach erfolgreichem Neustart sind die Änderungen aktiv.
+
+**Hinweis:**
+- Diese Vorgehensweise ist Standard für alle Backend-Dateien (z.B. server.js, package.json etc.).
+- Für mehrere Dateien kann auch ein ganzer Ordner per scp oder mit Tools wie WinSCP übertragen werden.
+- Änderungen an der .env-Datei erfordern ebenfalls einen Neustart des Backends.
 
 ---
 
-*Last Updated: [Current Date]*
-*Version: 1.0*
+*Last Updated: [05.07.2025]*
+*Version: 1.02*
 *Status: Planning Phase*

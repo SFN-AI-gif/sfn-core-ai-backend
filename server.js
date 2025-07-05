@@ -9,6 +9,7 @@ const pdfParse = require('pdf-parse'); // npm install pdf-parse
 const mammoth = require('mammoth'); // npm install mammoth
 const xlsx = require('xlsx'); // npm install xlsx
 const { parse } = require('csv-parse/sync'); // npm install csv-parse
+const { fetchUploadsFromWeaviate } = require('./backend/documentService');
 const app = express();
 const port = 3000;
 
@@ -305,6 +306,17 @@ app.get('/api/documents', async (req, res) => {
   } catch (err) {
     console.error('Weaviate GraphQL GET error:', err.response?.data || err.message);
     return res.status(500).json({ error: 'Failed to fetch documents from Weaviate.' });
+  }
+});
+
+// 6. Nutzer-Uploads als Liste abrufen: GET /api/upload
+app.get('/api/upload', async (req, res) => {
+  try {
+    const result = await fetchUploadsFromWeaviate(WEAVIATE_URL, WEAVIATE_API_KEY);
+    res.json(result);
+  } catch (err) {
+    console.error('Weaviate GET /api/upload error:', err.response?.data || err.message);
+    res.status(500).json({ error: 'Failed to fetch uploads from Weaviate.' });
   }
 });
 
